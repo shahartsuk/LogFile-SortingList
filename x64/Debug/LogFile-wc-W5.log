@@ -1,0 +1,8 @@
+﻿  SortingLinkedList-d1.c
+C:\Users\97254\source\repos\LogFile-wc-W5\LogFile-wc-W5\SortingLinkedList-d1.c(25,11): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\97254\source\repos\LogFile-wc-W5\LogFile-wc-W5\SortingLinkedList-d1.c(62,13): warning C4098: 'printTheList': 'void' function returning a value
+C:\Users\97254\source\repos\LogFile-wc-W5\LogFile-wc-W5\SortingLinkedList-d1.c(67,27): warning C4133: '=': incompatible types - from 'ItemNum *' to 'item *'
+C:\Users\97254\source\repos\LogFile-wc-W5\LogFile-wc-W5\SortingLinkedList-d1.c(76,15): warning C4098: 'ReplaceItem': 'void' function returning a value
+C:\Users\97254\source\repos\LogFile-wc-W5\LogFile-wc-W5\SortingLinkedList-d1.c(80,22): warning C4098: 'ReplaceItem': 'void' function returning a value
+C:\Users\97254\source\repos\LogFile-wc-W5\LogFile-wc-W5\SortingLinkedList-d1.c(125,17): warning C4098: 'sort': 'void' function returning a value
+  LogFile-wc-W5.vcxproj -> C:\Users\97254\source\repos\LogFile-wc-W5\x64\Debug\LogFile-wc-W5.exe
