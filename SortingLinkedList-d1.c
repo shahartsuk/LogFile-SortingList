@@ -18,26 +18,49 @@ void printTheList();
 void releaseTheList();
 void ReplaceItem(t_item*);
 void sort();
+void logFile(char[100]);
+void logEvent(char[100]);
+void logError(char[100]);
 
 int main()
 {
+    char strStart[100];
+    char strEnd[100];
+    char strList[100];
+    char strSortList[100];
     int userNum=0;
     srand(time(NULL));
-    buildList(30);
-    buildList(10);
-    buildList(9);
-    buildList(20);
-    buildList(40);
-    buildList(25);
-    sort();
-    //sort();
+
+    strcpy(strStart, "System is starting");
+    logEvent(strStart);
     
+    for (int i = 0; i < 100000; i++)
+    {
+        buildList(rand());
+    }
+    strcpy(strList, "Build the list starting");
+    logEvent(strList);
+
+    sort();
+
+    strcpy(strSortList, "Sorting the list starting");
+    logEvent(strSortList);
 
     printTheList();
     releaseTheList();
+    strcpy(strEnd, "System is ending");
+    logEvent(strEnd);
 }
 void buildList(int num) {
+    char addItem[100];
     struct ItemNum* curr = (struct ItemNum*)malloc(sizeof(struct ItemNum));
+    if (!curr)
+    {
+        strcpy(addItem, "Cant add a item");
+        logError(addItem);
+        exit(1);
+    }
+
     curr->num = num;
     if (head == NULL) {
         head = curr;
@@ -56,7 +79,7 @@ void buildList(int num) {
 void printTheList() {
     struct ItemNum* curr = head;
     while (curr) {
-        printf("%d\n", curr->num);
+        printf("%d,", curr->num);
         curr = curr->next;
     }
     return 0;
@@ -129,7 +152,7 @@ void sort()
         change = 0;
         while (curr)
         {
-            if(curr->next!=NULL &&curr->num > curr->next->num)
+            if(curr->next!=NULL && curr->num > curr->next->num)
             {
               ReplaceItem(curr);
               change++;
@@ -138,6 +161,43 @@ void sort()
         }
     curr = head;
     }
+}
 
+void logFile(char message[1000])
+{
+    char date[100];
 
+    time_t t;
+    time(&t);
+
+    struct tm* timeinfo;
+
+    timeinfo = localtime(&t);
+
+    FILE* f = fopen("sortingListLogFile.log", "a");
+    if (!f) {
+        printf("error1");
+        exit(1);
+    }
+    sprintf(date, "sec-%d-%s", timeinfo->tm_sec,message);
+    fputs(date, f);
+    fputs("\n", f);
+
+    fclose(f);
+    return 0;
+
+}
+void logError(char message[1000])
+{
+    char error[100];
+    strcpy(error, "Error-");
+    strcat(error, message);
+    logFile(error);
+}
+void logEvent(char message[100])
+{
+    char event[100];
+    strcpy(event, "Event-");
+    strcat(event, message);
+    logFile(event);
 }
